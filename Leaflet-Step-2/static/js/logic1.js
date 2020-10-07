@@ -15,17 +15,24 @@ var satellite = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.pn
     accessToken: API_KEY
 });
 
-var greyscale = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
+var greyscale =  L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
     maxZoom: 18,
-    id: "mapbox.light",
+    id: "light-v10",
     accessToken: API_KEY
 });
 
-var outdoors = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
+// L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
+//     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+//     maxZoom: 18,
+//     id: "mapbox.light",
+//     accessToken: API_KEY
+// });
+
+var outdoors = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
     maxZoom: 18,
-    id: "mapbox.outdoors",
+    id: "outdoors-v11",
     accessToken: API_KEY
 });
 
@@ -39,25 +46,25 @@ var baseMaps = {
 // Overlays that may be toggled on or off
 var overlayMaps = {
     "Tectonic Plates": tectonicLayer,
-    "Earthquakes" : EarthquakeLayer
+    "Earthquakes" : earthquakeLayer
 };  
 
 // Create map object and set default layers
 var myMap = L.map("map", {
     center: [37.09, -95.71],
     zoom: 4,
-    layers: [satellite,EarthquakeLayer]
+    layers: [satellite,earthquakeLayer]
 });
 
 
 // Create a control for our layers, add our overlay layers to the map with default tile
-L.control.layers(null, overlays).addTo(map);
+L.control.layers(baseMaps, overlayMaps).addTo(myMap);
 
 
 
 // Define a markerSize function that will give each city a different radius based on its population
 function markerSize(magnitude) {
-    return magnitude * 4;
+    return magnitude * 3;
 }
 //Define a marker color function based on depth of the earthquake
 //FYI: magnitude can tell depth of the earthquake
@@ -97,12 +104,8 @@ function markerStyle(feature){
 } 
 
 
-
-//Define data url
-URL ="https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
-
-// Retrieve URL (USGS Earthquakes GeoJSON Data) with D3
-d3.json(URL, function(earthquakeData) {
+// Retrieve both tectonic and earthquake URLs  with D3
+d3.json(earthquakeURL, function(earthquakeData) {
     L.geoJSON(earthquakeData, {
         pointToLayer: function(feature, coordinates) {
         return L.circleMarker(coordinates);
@@ -115,8 +118,21 @@ d3.json(URL, function(earthquakeData) {
             "</h4><hr><p>Date & Time: " + new Date(feature.properties.time) + 
             "</p><hr><p>Magnitude: " + feature.properties.mag + "</p>");
         }
-    // Add earthquakeData to myMap
-    }).addTo(myMap);
+    // Add earthquakeData to earthquakeLayer
+    }).addTo(earthquakeLayer);
+    //Add earthquakeLayer to myMaps
+    earthquakeLayer.addTo(myMap);
+
+    //Retrieve tectonic plates URL with D3
+    d3.json(tectonicURL, function(tectonicData) {
+        L.geoJSON(tectonicData, {
+            color: "#DC143C",
+            weight: 2
+        //Add tectonicData to tectonicLayer    
+        }).addTo(tectonicLayer);
+        //Add tectoniLayer to myMap
+        tectonicLayer.addTo(myMap);
+    });
 
     
 
