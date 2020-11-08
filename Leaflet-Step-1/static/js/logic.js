@@ -13,7 +13,7 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: API_KEY
 }).addTo(myMap);
 
-// Define a markerSize function that will give each city a different radius based on its population
+// Define a markerSize function that will give each city a different radius based on eartquake magnitude
 function markerSize(magnitude) {
     return magnitude * 4;
 }
@@ -56,7 +56,7 @@ function markerStyle(feature){
 
 
 
-//Define data url
+//Define data url from usgs.gov
 URL ="https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
 
 // Retrieve URL (USGS Earthquakes GeoJSON Data) with D3
@@ -78,7 +78,7 @@ d3.json(URL, function(earthquakeData) {
 
     
 
-    // Set Up Legend
+    // Set Up Legend that shows the magnitude of the eartquake
     var legend = L.control({ position: "bottomright" });
     legend.onAdd = function() {
         var div = L.DomUtil.create("div", "info legend"), 
