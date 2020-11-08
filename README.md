@@ -11,8 +11,10 @@ Your first task is to visualize an earthquake data set.
 The USGS provides earthquake data in a number of different formats, updated every 5 minutes. Visit the [USGS GeoJSON Feed](http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php) page and pick a data set to visualize. When you click on a data set, for example 'All Earthquakes from the Past 7 Days', you will be given a JSON representation of that data. You will be using the URL of this JSON to pull in the data for our visualization.
 
 2. **Import & Visualize the Data**
-These mapw were created by using Leaflet that plots all of the earthquakes from the data set based on their longitude and latitude. Daata markers reflect the magnitude of the earthquake by their size and and depth of the earth quake by color. As you can see, earthquakes with higher magnitudes appear larger and earthquakes with greater depth appear darker in color. One canm get more additional detailed information about earthqua
+These mapw were created by using Leaflet that plots all of the earthquakes from the data set based on their longitude and latitude. Daata markers reflect the magnitude of the earthquake by their size and and depth of the earth quake by color. As you can see, earthquakes with higher magnitudes appear larger and earthquakes with greater depth appear darker in color. One canm get more additional detailed information about earthquake when a marker is clicked. On the lower left side, there is a legend that scaled the magnitude of the earthquake by color.
 
+This is how earthquake map looks like:
+ As you can see, most the eartquakes occur on the west of side of the America, in states li
    ![3-Data](Images/Earthquake.png)
 
    
@@ -23,15 +25,7 @@ These mapw were created by using Leaflet that plots all of the earthquakes from 
 
    
 
-   * 
-
-   * **HINT** the depth of the earth can be found as the third coordinate for each earthquake.
-
-   * Include popups that provide additional information about the earthquake when a marker is clicked.
-
-   * Create a legend that will provide context for your map data.
-
-   * Your visualization should look something like the map above.
+   
 
 - - -
 
