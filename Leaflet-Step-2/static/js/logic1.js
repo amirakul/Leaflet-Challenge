@@ -56,7 +56,7 @@ L.control.layers(baseMaps, overlayMaps).addTo(myMap);
 
 
 
-// Define a markerSize function that will give each city a different radius based on its population
+// Define a markerSize function that will give each city a different radius based on earthquake magnitude
 function markerSize(magnitude) {
     return magnitude * 3;
 }
@@ -130,7 +130,7 @@ d3.json(earthquakeURL, function(earthquakeData) {
 
     
 
-    // Set Up Legend
+    // Set Up Legend for bottom right of the map
     var legend = L.control({ position: "bottomright" });
     legend.onAdd = function() {
         var div = L.DomUtil.create("div", "info legend"), 
