@@ -12,3 +12,10 @@ h3
 {
  color: red;   
 }
+li {
+  list-style: none;
+  color: red;
+}
+#text {
+  color:red;
+}
