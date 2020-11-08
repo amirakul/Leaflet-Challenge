@@ -14,10 +14,13 @@ The USGS provides earthquake data in a number of different formats, updated ever
 These mapw were created by using Leaflet that plots all of the earthquakes from the data set based on their longitude and latitude. Daata markers reflect the magnitude of the earthquake by their size and and depth of the earth quake by color. As you can see, earthquakes with higher magnitudes appear larger and earthquakes with greater depth appear darker in color. One canm get more additional detailed information about earthquake when a marker is clicked. On the lower left side, there is a legend that scaled the magnitude of the earthquake by color.
 
 This is how earthquake map looks like:
- As you can see, most the eartquakes occur on the west of side of the America, in states li
+
+As you can see, most the eartquakes occur on the west of side of the America, in states like California, Oregon and Nevada.
+ 
    ![3-Data](Images/Earthquake.png)
 
-   
+
+This map displays tectonic plates across America. According to eartquake glossary, Plate Tectonics is the theory supported by a wide range of evidence that considers the earth's crust and upper mantle to be composed of several large, thin, relatively rigid plates that move relative to one another. Slip on faults that define the plate boundaries commonly results in earthquakes. Several styles of faults bound the plates, including thrust faults along which plate material is subducted or consumed in the mantle, oceanic spreading ridges along which new crustal material is produced, and transform faults that accommodate horizontal slip (strike slip) between adjoining plates.
 
    ![4-JSON](Images/Tectonic.png)
 
